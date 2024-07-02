@@ -1,0 +1,77 @@
+{% extends 'RMS/main.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Followers</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <style>
+    /* Additional styling specific to followers.html */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 150px;
+    }
+    .company-card {
+      background-color: #fff;
+      border: 1px solid #dddfe2;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin: 10px 0; /* Adjust for vertical spacing */
+      padding: 20px;
+      width: 750px; /* Adjust width as needed */
+      height: 90px; /* Maintain aspect ratio */
+      text-align: center;
+    }
+    .company-card img {
+      width: 60px; /* Adjust size of the photo */
+      height: 60px; /* Maintain aspect ratio */
+      border-radius: 50%; /* Rounded corners for circular effect */
+      margin-bottom: 10px;
+    }
+    .company-card h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .company-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    .company-card .btn {
+      background-color: #007bff;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      text-decoration: none;
+    }
+    .company-card .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  {% for follower in followers %}
+    <div class="company-card">
+     <img style=" margin-left:-650px;" class="img" src="{{ follower.photo_url }}" alt="{{ follower.username }}" >
+       
+      <h4 style="color:blue; margin-left:-480px;margin-top:-50px;">{{ follower.username }}</h4>
+     
+      <!-- Add button if needed -->
+      {% if follower.id %}
+         <button type="button" onclick="location.href='{% url follower.profile_url follower.id  %}'" class="btn" data-mdb-ripple-color="dark" style="z-index: 1;margin-left:600px;margin-top:-60px;">View profile</button>
+      {% endif %}
+
+    </div>
+  {% endfor %}
+</div>
+</body>
+</html>
+{% endblock %}

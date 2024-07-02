@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Similarity Calculator Result</title>
+</head>
+<body>
+    <h1>Sentence Similarity Calculator Result</h1>
+
+    {% if job_instance %}
+    <h2>Job Details:</h2>
+    <p>Job ID: {{ job_instance.id }}</p>
+    <!-- Display other job details as needed -->
+    {% endif %}
+
+    {% if number_of_applicants %}
+    <h2>Number of Applicants:</h2>
+    <p>{{ number_of_applicants }}</p>
+    {% endif %}
+
+    {% if top_applicants %}
+    <h2>Top Applicants (Ordered by Similarity):</h2>
+    <ul>
+        {% for applicant_status in top_applicants %}
+        <li>{{ applicant_status.applicant.name }} - Similarity: {{ applicant_status.percentage }}%</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if similarities %}
+    <h2>Similarities:</h2>
+    <ul>
+        {% for sentence, similarity in similarities %}
+        <li>{{ sentence }} - Similarity: {{ similarity }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No similarities calculated yet.</p>
+    {% endif %}
+
+    {% if average_similarity %}
+    <h2>Average Similarity:</h2>
+    <p>{{ average_similarity }}</p>
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+{% extends 'RMS/main.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Companies</title>
+  <style>
+    /* Basic styling for demonstration purposes */
+    .company-card {
+      border: 2px solid #ccc;
+      padding: 20px;
+      margin: 10px auto; /* Center the cards */
+      width: 750px; /* Adjust as needed */
+      height: auto; /* Allow height to be dynamic */
+      text-align: center;
+      background-color: #eee;
+      color: black;
+    }
+    .company-img {
+      max-width: 100%;
+      height: auto;
+    }
+    .btn {
+      background-color: #3498db;
+      color: #fff;
+    }
+    .btn:hover {
+      background-color: #3498db;
+      color: #fff;
+    }
+    .input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    /* Hide the label */
+    .search-bar label {
+      display: none;
+    }
+    /* Adjust the position of the search icon if needed */
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="search-bar" style="margin-left: 850px; margin-top: 50px;">
+    <form class="form-inline my-2 my-lg-0" method="GET">
+      <div class="search-bar">
+        {{ companyfilter.form }} 
+        <button class="btn " type="submit">
+          <i class="fas fa-search" style="color: white; width:5px; height:5px;"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  {% for company in companies %}
+  <div class="company-card">
+    <img src="{{ company.companyphoto.url }}" class="img-fluid avatar-xxl rounded-circle" alt="" style="width: 150px; height: 150px;">
+    <h4 class="text-primary font-size-20 mt-3 mb-2">{{ company.name }}</h4>
+    <div class="text-center border-end">
+      <h5 class="text-muted font-size-13 mb-0">{{ company.companytype }}</h5>
+      <div>
+        <p class="mb-0 text-muted">{{ company.describtion }}</p>
+      </div>
+      <div class="col-md-12">
+        <div>
+          <p class="text-muted mb-2 fw-medium"><i class="mdi mdi-email-outline me-2"></i>{{ company.email }}</p>
+          <p class="text-muted fw-medium mb-0"><i class="mdi mdi-phone-in-talk-outline me-2"></i>{{ company.phone }}</p>
+        </div>
+      </div>
+      <br>
+    </div>
+    {% if company.id %}
+    <button type="button" onclick="location.href='{% url 'companyPro' company.id%}'" class="btn" data-mdb-ripple-color="dark" style="z-index: 1;">View profile</button>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+</body>
+</html>
+
+{% endblock %}
+{% comment %}  company_id {% endcomment %}

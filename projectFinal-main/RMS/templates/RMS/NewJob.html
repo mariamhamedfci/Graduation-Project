@@ -1,0 +1,95 @@
+
+
+
+{% extends 'RMS/main.html' %}
+{% load static %}
+
+{% block content %}
+  <link rel="stylesheet", href="{%static 'css/style.css'%}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+  
+      .post-container {
+        max-width: 600px;
+        margin: 100px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+  
+      .post-form {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .post-form textarea {
+        resize: none;
+        height: 100px;
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      .post-form input{
+        resize: none;
+        height: 10px;
+        width: 100px;
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+
+      }
+  
+      .post-form button {
+        background-color: #1877f2;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+    </style>
+    <link rel="stylesheet", href="{%static 'css/style.css'%}">
+</head>
+<body>
+  
+    <div class="post-container">
+      <h2>Create a New Job</h2>
+      <form class="post-form">
+        <textarea id="postContent" placeholder="Job Announcement"></textarea>
+        <button type="button" onclick="submitPost()">Post</button>
+      </form>
+    </div>
+
+    <script>
+      function submitPost() {
+        // In a real-world scenario, you would use JavaScript to handle the form submission,
+        // possibly using AJAX to send data to a server for processing.
+        // Here, we'll just log the post content to the console for demonstration purposes.
+  
+        var postContent = document.getElementById('postContent').value;
+        console.log('Posted: ', postContent);
+  
+        // You can add further logic to send the data to the server or perform other actions.
+      }
+    </script>
+</body>
+</html>
+
+{% endblock %}

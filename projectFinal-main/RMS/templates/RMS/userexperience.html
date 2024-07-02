@@ -1,0 +1,112 @@
+{% extends 'RMS/main.html' %}
+
+
+
+
+{% block content %}
+
+
+
+<head>
+    <style>
+     .cta-button2 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:rgb(226, 62, 62);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+.cta-button1 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:#3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+    </style>
+
+
+</head>
+
+<div class="container"  style="margin-left: 150px;margin-top:100px;margin-left: 250px;">
+
+
+    
+
+    <div class="insideposter" style=" background-color: rgba(255, 255, 255, 0.3); width: 780px;
+            margin-left:120px;">
+        <h1 class="headofedit"  style="color:white"> Edit Experince</h1>
+    </div>
+   
+
+    <div class="card info" style="background-color: rgba(255, 255, 255, 0.3); " >
+        <div class="card"style="background-color: rgba(255, 255, 255, 0.3); ">
+
+                
+            <div class="card-body"style="background-color: rgba(255, 255, 255, 0.3);  " >
+                <div  style="margin: 15px 20px 10px 20px;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="card-title mb-0" >Work Experince</h4>
+                        <a class="btn " href="{% url 'adduserexperience' %}" role="button" style="margin-top: 20px;background: rgba(255,255,255,0.9);">Add New</a>
+                    </div>
+                       
+                          
+                           {% for workexperience in request.user.applicant.workexperience_set.all %}
+                      <ul class="list-unstyled  mb-0">
+                          <li class="ex"style="background-color: rgba(255, 255, 255, 0.3);  " >
+                            <div class="card ex"style="background-color: rgba(255, 255, 255, 0.3); ">
+                                <div class="card-body"style="background-color: rgba(255, 255, 255, 0.3);  ">
+                                     
+
+
+
+
+                                           
+                                             <span>
+                                              
+                                              <div style="display: inline-block;">
+                                              
+                                               <a href="{% url 'Editedexperience' workexperience.id %}" class="cta-button1" style=" height:45px;margin-left:-140px; margin-top:-200px; margin-left: -10px;">Edit</a>
+                                              </div>
+                                              <div style="display: inline-block; margin-left: -8px;">
+                                              
+                                              <form method="post" action="{% url 'deleteexpeience' workexperience.id %}">
+                                              {% csrf_token %}
+                                              <input type="submit" class="cta-button2" style="width: 90px; background-color:  rgb(240, 20, 18); margin-left:450px; " value="Delete">
+                                               </form>
+                                               </div> 
+                                               </div> 
+                                               </span>
+
+
+                                              
+                                    <h5 class="card-title text-center mb-0 comp" style="color: black; font-size: 18px; margin:20px;">{{ workexperience.companyworked }}</h5>
+                                    <p class="card-subtitle mb-2 text-muted text-center det" style="color: black; font-size: 18px; padding-top:20px;">{{ workexperience.jobworked }}</p>
+                                    <div style="color: black; font-size: 18px;">Details:</div>
+                                    <p class="card-text">
+                                       {{ workexperience.describtion }}  
+                                    </p>
+                                    <hr>
+                                </div>
+                            </div>
+                      </ul><!-- end ul -->
+
+                       {% endfor %}
+                      
+                    
+                </div>
+            </div><!-- end card-body -->
+          </div><!-- end card -->    
+
+     </div>
+             
+</div>
+
+
+
+{% endblock %}

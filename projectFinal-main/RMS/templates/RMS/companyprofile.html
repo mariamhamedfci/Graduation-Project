@@ -1,0 +1,218 @@
+
+
+
+{% extends 'RMS/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<head>
+<style>
+
+
+#postContent{
+
+    width:650px;
+}
+.row2{
+    margin-top:-20px;;
+}
+.row3{
+    margin-top:-20px;;
+}
+.cta-button2 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:rgb(226, 62, 62);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+.cta-button1 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:#3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+
+.cta-button1:hover{
+ color: #fff;
+ background-color: #0077B5;
+}
+ .cta-button2:hover{
+ color: #fff;
+ background-color:rgb(226, 62, 62);
+}
+
+
+</style>
+</head>
+
+<div class="container" style="margin-top:100px;margin-left:150px;">
+
+
+
+
+<span >
+  <div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="text-center border-end">
+                         <img src="{{request.user.company.companyphoto.url}}" class="img-fluid avatar-xxl rounded-circle" alt="">
+                            <br>
+                            <br>
+                            <a href="EditCompanyProf">
+                                <button type="button" onclick="location.href='EditCompanyProf'" href="EditCompanyProf" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1; "> Edit profile </button>
+                            </a>
+                            <h4 class="text-primary font-size-20 mt-3 mb-2">{{ request.user.company.name }}</h4>
+                            <h5 class="text-muted font-size-13 mb-0">{{request.user.company.companytype}}</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="ms-3">
+                            <div>
+                                <h4 class="card-title mb-2">{{request.user.company.name }}</h4>
+                                <p class="mb-0 text-muted">{{request.user.company.describtion}} </p>
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-md-12">
+                                    <div>
+                                        <p class="text-muted mb-2 fw-medium"><i class="mdi mdi-email-outline me-2"></i>{{request.user.company.email}}
+                                        </p>
+                                        <p class="text-muted fw-medium mb-0"><i class="mdi mdi-phone-in-talk-outline me-2"></i>{{request.user.company.phone}}
+                                        </p>
+                                    </div>                                   
+                                </div>
+                                <button type="button" class="btn btn-link">{{request.user.company.website}}</button>
+                            
+                            </div>
+                         
+                            <ul class="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justfied" role="tablist">
+                                
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link "  href="/jobsStatus" target="__blank">
+                                        <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                        <span class="d-none d-sm-block">Job Status</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link px-4 "  href="/JobsHistory" target="__blank">
+                                        <span class="d-block d-sm-none"><i class="mdi mdi-account-group-outline"></i></span>
+                                        <span class="d-none d-sm-block">Jobs History</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link  "  href="/JobRequirements" target="__blank">
+                                        <span class="d-block d-sm-none"><i class="mdi mdi-account-group-outline"></i></span>
+                                        <span class="d-none d-sm-block">New Job</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link  "  href="/followers" target="__blank">
+                                        <span class="d-block d-sm-none"><i class="mdi mdi-account-group-outline"></i></span>
+                                        <span class="d-none d-sm-block">Followers</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="row3">
+        <div class="card">
+            <div class="tab-content p-4">
+                
+
+                <div class="tab-pane active show" id="tasks-tab" role="tabpanel">
+                    
+                    <div class="row">
+                        <div class="col-xl-12">  
+                          {% for job in request.user.company.job_set.all %}
+                                    {% if job.is_active %}
+                                        <li style="list-style: none; margin-bottom: 20px; padding: 15px; border: 2px solid #3498db; border-radius: 12px; background-color: #ecf0f1;">
+                                            <div class="timeline-content">
+                                                <p class="lead" style="margin-right:200px;">
+                                                    <h2 style="color: #3498db;">Job: <h2>{{ job.title }}</h2></h2>
+                                                    <br>
+                                                    <h2 style="color: #3498db;"> End Date: <h2>{{ job.end_date }}</h2></h2>
+                    <br>
+                                                    <h2 style="font-size:20px; color: #3498db;">Profile Professional:</h2>
+                                                    {{ job.profileprofessional }}
+                                                    <br>
+                                                    <h2 style="font-size:20px; color: #3498db;">Work Experience:</h2>
+                                                    {{ job.workexperience }}
+                                                    <br>
+                                                    <h2 style="font-size:20px; color: #3498db;">Education:</h2>
+                                                    {{ job.education }}
+                                                    <br>
+                                                    <h2 style="font-size:20px; color: #3498db;">Soft Skills:</h2>
+                                                    {{ job.softskills }}
+                                                    <br>
+                                                    <h2 style="font-size:20px; color: #3498db;">Technical Skills:</h2>
+                                                    {{ job.technicalskills }}
+                                                    <br>
+                                                    <h2 style="font-size:20px; color: #3498db;">Achievements:</h2>
+                                                    {{ job.achievements }}
+                                                </p>
+                                            </div>
+                                            <span>
+                                                <div style="display: inline-block;">
+                                                    <a href="{% url 'edit_job_req' job.id %}" class="cta-button1" style="height: 45px;">Edit</a>
+                                                </div>
+                                                <div style="display: inline-block; margin-left: -8px;">
+                                                    <form method="post" action="{% url 'deletejob' job.id %}">
+                                                        {% csrf_token %}
+                                                        <input type="submit" class="cta-button2" style="width: 90px;" value="Delete">
+                                                    </form>
+                                                </div>
+                                                <div style="display: inline-block; ">
+                                                    <a href="{% url 'Status' job.id %}" class="cta-button1" style="height: 45px; margin-left:-180px; background-color:green;">Job Status</a>
+                                                </div>
+                                            </span>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div> 
+</div>
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="pb-2">
+                    <h4 class="card-title mb-3">About</h4>
+                    <p>{{request.user.company.about}}</p>
+                    
+                </div>
+                <hr>
+                <br>
+                <div class="pb-2">
+                    <h4 class="card-title mb-3">Location</h4>
+                    <p>{{request.user.company.location}}</p>
+                   
+                </div>
+                
+            </div>
+        </div> 
+    </div>
+ </div>
+<span >
+</div>
+
+{% endblock %}

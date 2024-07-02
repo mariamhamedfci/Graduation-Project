@@ -1,0 +1,77 @@
+{% extends 'RMS/main.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        background-image: url('https://img.freepik.com/free-photo/empty-dark-concrete-wall-room-studio-background-floor-perspective-with-blue-soft-light-displays_1258-108910.jpg?t=st=1706640218~exp=1706640818~hmac=233eecd1d002c02436301c4a535d089f1d85f7cd96b485fb29122268b5443fa3');
+
+    }
+
+    .form-control {
+        font-size: 18px;
+        padding-left: 500px;
+        margin-left: -50px;
+    }
+
+    /* Add a new class for text inputs to style them individually */
+    .custom-input {
+        margin-right: 100px;
+        margin-bottom: 20px;
+    }
+
+    .insideposter {
+        margin-bottom: 20px;
+        width: 1000px;
+        margin-left: 20px;
+    }
+
+    .profileForm {
+        margin-up: 300px;
+    }
+
+    .headofedit {
+        margin-top: -10px;
+    }
+
+</style>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="container" style="background-color: rgba(255, 255, 255, 0);">
+    <br>
+    <br>
+    <br>
+    <br>
+
+    
+    <br>
+    <br>
+
+    <div class="card info mx-auto" style="background-color: rgba(255, 255, 255, 0.2);">
+        <div class="card-body" style="margin-up: 200px;">
+           <h1 class="headofedit" style="color:white"> Add Section</h1>
+            <form method="post" action="{% url 'addsection' %}">
+                {% csrf_token %}
+               
+                 <form method="post" action="{% url 'addsection' %}">
+              {% csrf_token %}
+              <label for="title" style="font-size: 20px;margin-left:250px; color:white" >Section Name:</label>
+              <input type="text" id="section_name" name="section_name"style=" width:400px;margin-left:250px;" required>
+
+             <label for="title" style="font-size: 20px;margin-left:250px; color:white" >Describtion:</label>
+              <input type="text" id="describtion" name="describtion"style=" width:400px;margin-left:250px;" required>
+
+            <input type="submit" class="btn btn-primary" value="Add Section" style="margin-top:30px; width:160px; ">
+             </form>
+                
+          
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

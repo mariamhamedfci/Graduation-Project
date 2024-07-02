@@ -1,0 +1,354 @@
+body {
+  background-image: url('../images/p2.jpg');
+  background-size: cover;
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Add this line to make the background fixed */
+  display: flex;
+  margin: 0;
+}
+
+
+
+.navbar {
+  padding: 10px;
+  font-size: 18px;
+  position: fixed;
+  background-color: rgb(12, 21, 44);
+  height: 700px;
+  border-radius: 20px;
+  width: 20%;
+  margin:10px
+  
+}
+
+
+.choose {
+  color:rgb(6, 67, 128)
+
+}
+
+
+/* button container */
+.main-content {
+  
+  margin-left: 340px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+}
+/* row */
+.departments {
+  column-count: 3; /* Set the number of columns */
+  column-gap: 300px; /* Adjust the gap between columns */
+  margin-top: 150px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+  gap: 300px; /* Adjust the spacing between buttons */
+}
+/* my button*/
+.department-btn {
+  background-color: white;
+  color: black;
+            padding: 20px 30px;
+            font-size: 26px;
+        
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+}
+
+
+
+.department-btn :hover {
+  background-color: white;
+}
+
+#button1 {
+  background-color: black;
+}
+
+#button2 {
+  background-color: black;
+}
+
+#button3 {
+  background-color: black;
+}
+
+#button4 {
+  background-color: black;
+}
+
+#button5 {
+  background-color: black;
+}
+
+#button6 {
+  background-color: black;
+}
+
+
+ .signup-box{
+    width:330px;
+    height:650px;
+    margin:auto;
+    margin-top: 50px;
+    background-color:rgb(250, 250, 250);
+    
+    border-radius: 5px;
+   
+  }
+
+  
+  h1{
+    text-align: center;
+    padding-top: 15px;
+
+  }
+  h4{
+    text-align: center;
+  }
+  form{
+
+    width:300px;
+    margin-left: 20px;
+
+  }
+  form label {
+    display: flex;
+    margin-top: 30px;
+    font-size: 18px;
+  }
+form input{
+  width: 300px;
+  padding: 7px;
+  border: none;
+  border: 1px solid rgb(19, 18, 17);
+  border-radius: 6px;
+  outline: none;
+}
+ .btn btn-primary{
+  width: 320;
+  height: 35px;
+  margin-top: 20px;
+  border: none;
+  background-color:white;
+  color: rgb(9, 9, 10);
+  font-size: 18px;
+ }
+ p{
+  text-align: center;
+  padding-top: 20px;
+  font-size: 15px;
+ }
+ 
+ .para-1{
+  text-align: center;
+  color: rgb(67, 73, 179);
+  font-size: 15px;
+  margin-top: -10px;
+ }
+ .para-1 a {
+color: rgb(17, 22, 21);
+
+ }
+ .signin{
+  width: 350px;
+  height:450px;
+  margin:auto;
+  margin-top: 100px;
+  background-color:rgb(250, 250, 250);
+  border-radius: 5px;
+  align-items: center;
+ 
+}
+h1{
+  text-align: center;
+  padding-top: 15px;
+
+}
+h4{
+  text-align: center;
+}
+form{
+
+  width:280px;
+  margin-left: 20px;
+
+}
+form label {
+  display: flex;
+  margin-top: 30px;
+  font-size: 18px;
+}
+form input{
+width: 300px;
+padding: 7px;
+border: none;
+border: 1px solid rgb(24, 23, 23);
+border-radius: 6px;
+outline: none;
+}
+
+
+.container{
+  margin-top: 20px;
+  margin-left: 350px;
+  margin-bottom: 30px;
+
+}
+
+
+
+.Editcvinfo{
+  margin-left: 300px;
+  margin-bottom: 30px;
+  
+}
+
+
+.row1 {
+  margin-bottom: 20px;
+  width: 1600px;
+}
+
+.tw .d-flex {
+  margin-left: -116px; /* Adjust this value as needed */
+  margin-top: 20px; 
+}
+
+.card {
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+.company-card{
+
+  
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #ddd;
+}
+.card-body {
+  padding: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+.image-picker {
+  /* Add your styles for the image picker here */
+  width: 100px;
+  height: 100px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#profileImageIcon {
+  cursor: pointer;
+}
+
+.is-valid {
+  display: flex;
+  align-items: center;
+}
+
+.form-check-input {
+  margin-right: 5px;
+}
+
+.py-6 {
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+}
+.info{
+  width:65%;
+  position: absolute;
+  margin-left:120px;
+  margin-top: 40px;
+}
+
+.image-picker {
+width: 150px;
+height: 150px;
+border: 2px dashed #ddd;
+position: relative;
+overflow: hidden;
+border-radius: 50%;
+background-size: cover;
+background-position: center;
+}
+
+#imagePickerContainer img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 50%;
+}
+
+
+#profileImageIcon {
+color: #555;
+}
+.poster {
+  background-color: #fff;
+  width: 95%;
+  height: 150px;
+  margin: 40px 20px 0px 30px; /* Shorthand for margin-top, margin-right, margin-bottom, margin-left */
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow for depth */
+  padding: 20px;;
+}
+
+.insideposter {
+  padding-top: 10px;
+  margin-left: 30px;
+  border: 2px solid #ACA7A6;
+  width: 95%;
+  height: 110px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a box shadow for depth */
+  z-index: 4;
+}
+.headofedit{
+  margin: 23px 0 0 50px;
+  font-size: 30px;
+  color: #7C7C7C;
+}
+
+.nav-link:hover {
+
+  background-color:#007bff;
+
+  
+
+}

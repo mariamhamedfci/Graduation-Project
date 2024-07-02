@@ -1,0 +1,109 @@
+{% extends 'RMS/main.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-photo/empty-dark-concrete-wall-room-studio-background-floor-perspective-with-blue-soft-light-displays_1258-108910.jpg?t=st=1706640218~exp=1706640818~hmac=233eecd1d002c02436301c4a535d089f1d85f7cd96b485fb29122268b5443fa3');
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        #notifications-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 100px auto 20px; /* Add top margin to create space below the fixed navbar */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Set the background color to semi-transparent white */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow-y: auto;
+        }
+
+        .notification {
+            background-color: #031E27; /* Set the background color to a professional blue */
+            color: white;
+            padding: 15px; /* Increase the padding */
+            margin-bottom: 15px; /* Increase the margin */
+            border-radius: 5px;
+            text-align: left;
+            font-size: 18px; /* Increase the font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .notification:hover {
+            background-color: #004494;
+            transform: translateY(-10px);
+        }
+
+        .notification-title {
+            font-weight: lighter;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .notification-message {
+            font-size: 16px;
+        }
+
+        .notification-message img {
+            vertical-align: middle;
+            margin-right: 10px;
+            width: 40px; /* Set the width of the image */
+            height: 40px; /* Set the height of the image */
+            border-radius: 50%; /* Make the image circular */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
+    </style>
+    <title>Notification List Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+</head>
+<body>
+
+    <div id="notifications-container">
+        {% for notification in notifications %}
+            <div class="notification" onclick="handleNotificationClick('{{ notification.message }}')">
+                <div style="padding:10px; border-radius:5px; margin:10px; border:2px solid white;">
+
+                <div class="notification-message">
+                    <img src="https://cdn-icons-png.freepik.com/256/5675/5675747.png" alt="Notification Icon" style="vertical-align: middle; margin-right: 10px;">
+                    {{ notification.message }} ... {{ notification.timestamp|date:"M d, Y H:i" }}
+                </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        function handleNotificationClick(message) {
+            Swal.fire({
+                title: 'Notification',
+                text: message,
+                icon: 'info',
+                confirmButtonText: 'OK',
+                customClass: {
+                    popup: 'swal-popup-class'
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+{% endblock %}

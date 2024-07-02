@@ -1,0 +1,129 @@
+{% extends 'RMS/main.html' %}
+<!DOCTYPE html>
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Followers Panel</title>
+    <style>
+        .card {
+            width:800px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-left:150px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-container body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .progress-container {
+            position: relative;
+        }
+
+        .progress {
+            width: 100px;
+            height: 100px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #3fc210;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 0.5s ease;
+        }
+
+        .percentage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .followers-panel {
+            max-width: 800px;
+            margin: 50px auto;
+            color: #333;
+        }
+
+        .followers-panel .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #333;
+        }
+
+        .followers-panel .card-header {
+            background-color: black;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .followers-panel .list-group-item {
+            border: none;
+            border-bottom: 1px solid #333;
+        }
+
+        .followers-panel .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        .badge-active {
+            background-color: #28a745;
+        }
+
+        .badge-pending {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .badge-inactive {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div class="followers-panel">
+    <div class="card" style="margin-top: 20px; margin-left: 40px;">
+        <div class="card-header">
+            <h2 class="mb-0">Job Status</h2>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for job_status in job_status_list %}
+            <li class="list-group-item d-flex justify-content-between align-items-center color:#fff">
+                {{ job_status.applicant }} : {{ job_status.job }} 
+                <a href="{% url 'applicantprof' job_status.applicant.id %}"> 
+                    <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1; margin-left:50px">CV</button>
+                </a>
+                <div class="progress-container">
+                    <div class="progress">
+                        <div class="progress-bar" style="width: {% widthratio job_status.percentage 1 100 %}%; ">
+                            <span class="percentage">{% widthratio job_status.percentage 1 100 %}%</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

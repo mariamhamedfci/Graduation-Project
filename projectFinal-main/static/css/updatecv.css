@@ -1,0 +1,21 @@
+#editinfocv {
+    background-color: #0D6EFD; /* Green */
+    color: white;
+    padding: 10px 20px;
+    width: 110px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0 0 480px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#editinfocv:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #0D6EFD;
+}

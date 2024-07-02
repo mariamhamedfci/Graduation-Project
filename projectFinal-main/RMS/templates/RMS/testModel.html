@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Similarity Calculator</title>
+</head>
+<body>
+    <h1>Sentence Similarity Calculator</h1>
+    <form action="{% url 'cv_evaluation' %}" method="post">
+        {% csrf_token %}
+       
+        <button type="submit">Calculate Similarity</button>
+    </form>
+
+    {% if similarities %}
+    <div>
+        <h2>Similarities:</h2>
+        {% for sentence, similarity in similarities %}
+            <p>{{ sentence }} - Similarity: {{ similarity }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

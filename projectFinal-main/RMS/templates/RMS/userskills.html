@@ -1,0 +1,120 @@
+{% extends 'RMS/main.html' %}
+
+
+
+
+{% block content %}
+<head>
+    <style>
+       
+  .container{
+
+     margin-left:300px;
+
+    }
+        .card {
+            background-color: rgba(255, 255, 255, 0.1)
+        }
+         .insideposter {
+            margin-bottom: 20px;
+            width: 800px;
+            margin-left: 20px;
+        }
+        .cta-button2 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:rgb(226, 62, 62);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+.cta-button1 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:#3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+    </style>
+</head>
+
+
+
+
+<div class="container"  style="margin-top:100px;" >
+
+
+
+    <div class="insideposter" style="height: 100px; margin-left: 100px;background-color: rgba(255, 255, 255, 0.2);  ">
+        <h1 class="headofedit"style="color:white; margin-top:5px;"> Edit Technical Skill</h1>
+    </div>
+   
+
+    <div class="card info" >
+        <div class="card">
+
+                
+            <div class="card-body" >
+                <div  style="margin: 15px 20px 10px 20px;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="card-title mb-0" style="color:white">Technical Skill</h4>
+                        <a class="btn " href="{% url 'addskills' %}" role="button" style="margin-top: 20px;background: rgba(255,255,255,0.7);">Add New</a>
+
+                    </div>
+                    <ul class="list-unstyled mb-0">
+                        <!-- Education Entry 1 -->
+                         {% for skils in request.user.applicant.skils_set.all %}
+                        <li style="list-style: none; margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; position: relative;">
+
+                        
+                        
+ 
+                         <a href="{% url 'EditSkill' skils.id %}" class="cta-button1" style=" height:45px;margin-left:580px; margin-top:0px; ">Edit</a>
+                                              
+                                   
+                            <h5 class="lh-base mb-0" style="padding-bottom: 15px; color: white;">{{skils.name }}</h5>
+                                            <div>
+                                              <form method="post" action="{% url 'deleteskill' skils.id %}">
+                                              {% csrf_token %}
+                                              <input type="submit" class="cta-button2" style="width: 90px; background-color:  rgb(240, 20, 18);margin-left:540px; " value="Delete">
+                                               </form>
+                                               </div> 
+                        
+                        </li>
+                        {% endfor %} 
+                      </ul>
+                </div>
+            </div><!-- end card-body -->
+          </div><!-- end card -->    
+
+     </div>
+             
+</div>
+
+<script>
+    document.getElementById('profilePicture').addEventListener('change', function (event) {
+        const imagePickerContainer = document.getElementById('imagePickerContainer');
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const imageUrl = e.target.result;
+
+                // Update the image picker with the selected image
+                imagePickerContainer.innerHTML = `<img src="${imageUrl}" alt="Selected Image" class="img-fluid rounded-circle">`;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+
+{% endblock %}

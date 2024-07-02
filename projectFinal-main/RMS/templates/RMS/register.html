@@ -1,0 +1,184 @@
+
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Ludiflex | Login</title>
+</head>
+<style>
+body{
+  background-color: #000;
+    background-image: url("https://img.freepik.com/free-photo/empty-dark-concrete-wall-room-studio-background-floor-perspective-with-blue-soft-light-displays_1258-108910.jpg?t=st=1706640218~exp=1706640818~hmac=233eecd1d002c02436301c4a535d089f1d85f7cd96b485fb29122268b5443fa3");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        height: 45px;
+    width: 87%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255,255,255,0.1);
+    }
+.container{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 0 15px;
+}
+span{
+    color: #fff;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+header{
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+.input-field{
+    display: flex;
+    flex-direction: column;
+}
+.input-field .input{
+    height: 45px;
+    width: 87%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255,255,255,0.1);
+}
+i{
+    position: relative;
+    top: -31px;
+    left: 17px;
+    color: #fff;
+}
+::-webkit-input-placeholder{
+    color: #fff;
+}
+.submit{
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    background: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: .3s;
+}
+.submit:hover{
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+.bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: small;
+    color: #fff;
+    margin-top: 10px;
+}
+.left{
+    display: flex;
+}
+label a{
+    color: #fff;
+    text-decoration: none;
+}</style>
+<body>
+
+<form method="POST" action="{% url 'register' %}">
+   {% csrf_token %}
+    <div class="box">
+        <div class="container">
+            <div class="top-header">
+                <span>Don't have an account?</span>
+                <header>Sign Up</header>
+            </div>
+
+            <div class="form-group">
+                <label class="input"> <input type="text" name="username" placeholder="Username"></label>
+               
+                <i class="bx bx-user"></i>
+            </div>
+
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email">
+               
+                <i class="bx bx-envelope"></i>
+            </div>
+
+            <div class="form-group">
+              <input type="password" name="password1" placeholder="Password">
+               
+                <i class="bx bx-lock-alt"></i>
+            </div>
+
+            <div class="form-group">
+              <input type="password" name="password2" placeholder="Confirm Password">
+            
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            
+            <div class="bottom">
+            
+                <input type="submit" class="submit" name="registration_type" value="company">
+            </div>
+
+            <div class="bottom">
+                <input type="submit" class="submit" name="registration_type" value="applicant">
+            </div>
+
+            <span>Have an account? <a href="{% url 'login' %}">Login</a></span>
+
+            
+                {% for msg in messages %}
+               <h6 style="color: red;"> {{msg}} </h6>
+
+                 {% endfor %}
+        </div>
+    </div>
+</form>
+</body>
+</html>
+
+ {% endblock %}
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+
+
+
+
+
+

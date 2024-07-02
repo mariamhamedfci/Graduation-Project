@@ -1,0 +1,94 @@
+{% extends 'RMS/main.html' %}
+
+
+
+
+{% block content %}
+
+
+
+
+<div class="container" style="margin-top:60px;"  >
+
+
+
+    <div class="card info"  style="margin-left: 100px;margin-left: 260px;background-color: rgb(255,255,255,0.1);" >
+        <div class="card-body" style="margin-bottom: 60px; width: 100%;">
+
+         <h1 style="color:white" > Edit Volunteer</h1>
+            <form  method="POST" enctype="multipart/form-data" >
+               
+               
+
+                <div class="row "style="width:900px ;" >
+                    <div class="col-lg-8">
+                        
+                  <form id="profileForm" method ="POST" action = "" enctype = "multipart/form-data" style="padding-left:200px;">
+                   <div class = "form-group">
+                     {% csrf_token %}
+                  {% for field in form %}
+                        <label class="form-label">{{ field.label_tag }}</label>
+                        {{ field }}
+                    {% endfor %}
+                   </div>
+                 
+                     </form>
+                           
+           <div class="input-field">
+                <input type="submit" class="submit" value="Update">
+            </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<style>
+   
+    .form-group label {
+        font-size: 20px;
+         color:white;
+    }
+  
+  
+      .form-group input,
+    .form-group select,
+    .form-group textarea {
+        height: 70px;
+    width: 700px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255,255,255,0.1);
+    }
+.submit{
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 20%;
+    background: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: .3s;
+}
+.submit:hover{
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+.input-field .input{
+    height: 45px;
+    width: 20%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255,255,255,0.1);
+}
+</style>
+
+{% endblock %}

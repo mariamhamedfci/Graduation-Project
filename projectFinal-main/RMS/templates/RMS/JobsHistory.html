@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'RMS/main.html' %}
+{% load static %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job History</title>
+   
+<style>
+
+
+
+.card-header {
+    
+    color: black;
+    margin-top:2px;
+   
+}
+
+.list-group-item {
+    border: none;
+}
+
+.list-group-item h6 {
+    margin-bottom: 5px;
+}
+
+.list-group-item p {
+    margin-bottom: 0;
+}
+.cta-button1 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:#3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.cta-button1:hover{
+ color: #fff;
+ background-color: #0077B5;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="container" style="margin-top:100px;margin-left:200px;">
+    <div class="card" style="width:900px; margin-left:120px;">
+        <div class="card-header ">
+            <h2>Job History</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+             {% for job in request.user.company.job_set.all %}
+                <li class="list-group-item">                      
+                            
+                    <h6>{{ job.title }}</h6>
+                    <p> Id: {{ job.id }}</p>
+                    <p>Created: {{ job.created_at|date:"F j, Y H:i:s" }}</p>
+
+                </li>
+
+                
+              {% endfor %}
+                                      
+                
+                                       <div style="display: inline-block;">
+                                              <a href="{% url 'companyprofile'  %}" class="cta-button1" style=" height:45px;margin-left:340px; margin-top:50px;">Return to your profile</a>
+                                              </div> 
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

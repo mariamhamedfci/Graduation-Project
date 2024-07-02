@@ -1,0 +1,70 @@
+
+
+
+.avatar-xxlcv {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.edit {
+    margin-top: 15px;
+}
+
+.nav-tabs-custom {
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.nav-link {
+    color: #000;
+}
+
+.cardcv {
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.comp {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.det {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.ex {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.cardcv-title {
+    color: #000;
+}
+
+.badge {
+    background-color: #0D6EFD;
+    color: #fff;
+    margin-right: 5px;
+}
+
+hr {
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.plus_info{
+    float: left;
+}
+.tw{
+    margin-left: 150px;
+    color:gray;
+    padding-bottom: 30px;
+}

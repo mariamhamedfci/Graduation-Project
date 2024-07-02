@@ -1,0 +1,125 @@
+{% extends 'RMS/main.html' %}
+
+
+
+
+{% block content %}
+
+
+<head>
+    <style>
+    .container{
+
+     margin-left:200px;
+
+    }
+        body{
+            background-image: url('https://img.freepik.com/free-photo/empty-dark-concrete-wall-room-studio-background-floor-perspective-with-blue-soft-light-displays_1258-108910.jpg?t=st=1706640218~exp=1706640818~hmac=233eecd1d002c02436301c4a535d089f1d85f7cd96b485fb29122268b5443fa3');
+          
+        }
+        .card{
+           background-color: rgb(255,255,255,0.1);
+            margin-right:40px;
+        }
+        .span{
+            color:white;
+        }
+        .insideposter{
+            margin-bottom: 20px;
+            width: 850px;
+            margin-left:120px;
+            background-color: rgb(255,255,255,0.1);
+        }
+        .headofedit{
+            margin-top: -10px;
+        }
+        .h4{
+            color:white;
+        }
+            .cta-button2 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:rgb(226, 62, 62);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+.cta-button1 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:#3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+    </style>
+
+
+</head>
+
+
+<div class="container" style="margin-top:100px; "  >
+
+
+
+    <div class="insideposter" style="height:80px; ">
+        <h1 class="headofedit" style="color:white"> Edit Education</h1>
+    </div>
+   
+
+    <div class="card info" style="background-color: rgb(255,255,255,0.1); margin-top: 20px; " >
+        <div class="card">
+
+                
+            <div class="card-body"style="   background-color: rgb(255,255,255,0);" >
+                <div  style="margin: 15px 20px 10px 20px;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="card-title mb-0" style="color:white;">Education</h4>
+                        <a class="btn " href="{% url 'addusereducation' %}" role="button" style="margin-top: 20px; background: rgba(255,255,255,0.7);">Add New</a>
+
+                    </div>
+                    <ul class="list-unstyled mb-0">
+                        <!-- Education Entry 1 -->
+                         {% for education in request.user.applicant.education_set.all %}
+                        <li style="list-style: none; margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; position: relative;">
+                             <div style="display: inline-block; margin-left: 750px;">
+
+                             
+ 
+                                               <a href="{% url 'Editeducation' education.id %}" class="cta-button1" style=" height:45px;margin-left:-150px; margin-top:0px; ">Edit</a>
+                                              
+                                         
+                                           
+                                     </div> 
+                           
+                             <h3 style="color:white">{{ education.title }}</h3>
+                           <p class="font-size-13 mb-2" style="color: black; font-size: 20px;"><span style="color: white; font-size: 18px;">Degree: </span>{{ education.degree }}</p>
+                           <p class="font-size-13 mb-2" style="color:black; font-size: 20px;"><span style="color: white; font-size: 18px;">Major: </span>{{ education.major }}</p>
+                           <p class="font-size-13 mb-2" style="color: black; font-size: 20px;"><span style="color: white; font-size: 18px;">From-To: </span>{{ education.fromto }}</p>
+
+                                              <div>
+                                              
+                                              <form method="post" action="{% url 'deleteeducation' education.id %}">
+                                              {% csrf_token %}
+                                              <input type="submit" class="cta-button2" style="width: 90px; background-color:  rgb(240, 20, 18); margin-left:565px;margin-top:-60px; " value="Delete">
+                                               </form>
+                                               </div>
+                                             
+                        </li>
+                        {% endfor %}
+                      </ul>
+                </div>
+            </div><!-- end card-body -->
+          </div><!-- end card -->    
+
+     </div>
+             
+</div>
+
+
+
+
+{% endblock %}

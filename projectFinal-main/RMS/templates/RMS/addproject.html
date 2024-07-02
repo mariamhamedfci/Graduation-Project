@@ -1,0 +1,105 @@
+{% extends 'RMS/main.html' %}
+
+
+
+
+{% block content %}
+
+<style>
+   
+         .form-control {
+            font-size: 18px; /* Modify the font size to make inputs bigger */
+            padding-left: 500px; /* Adjust padding to increase size */
+            margin-left: -50px
+                     }
+
+
+                      .form-group label {
+        font-size: 20px; /* Adjust the font size according to your preference */
+        /* You can also add other styles like color, font-weight, etc. */
+    }
+
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 600px;
+        margin-left: 85px; /* Adjust the width according to your preference */
+        /* You can also add other styles like height, padding, etc. */
+    }
+        </style>
+
+
+
+<div class="container"  >
+
+
+
+    <div class="card info" style="margin-left: 150px;margin-top:100px;margin-left: 220px;background-color: rgb(255,255,255,0.1);" >
+        <div class="card-body" style="margin-bottom: 20px; width: 100%;">
+         <h1 class="headofedit" style="color:white"> Add Project </h1>
+            <form id="profileForm" method="POST" enctype="multipart/form-data" style="padding-left:240px;">
+            <form method="post" action="{% url 'addproject' %}">
+    {% csrf_token %}
+    <label for="title" style="font-size: 20px;margin-left:-60px;color:white;">title:</label>
+    <input type="text" id="title" name="title" style=" width:400px; height: 45px;
+    width: 500px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255,255,255,0.1);" required>
+
+    <label for="role" style="font-size: 20px;margin-left:-60px;color:white;">role:</label>
+    <input type="text" id="role" name="role" style=" width:400px; height: 45px;
+    width: 500px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255,255,255,0.1);" required>
+
+    
+    <label for="tools" style="font-size: 20px;margin-left:-60px;color:white;">tools:</label>
+    <input type="text" id="tools" name="tools" style=" width:400px; height: 45px;
+    width: 500px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255,255,255,0.1);" required>
+
+    <label for="describtion" style="font-size: 20px;margin-left:-60px;color:white;">describtion:</label>
+    <input type="text" id="describtion" name="describtion" style=" width:400px; height: 45px;
+    width: 500px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255,255,255,0.1);" required>
+<br>
+<hr>
+
+    <input type="submit" class="btn btn-primary" value="Add Project" style="  border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 300px;;
+    background: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: .3s;">
+</form>
+
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

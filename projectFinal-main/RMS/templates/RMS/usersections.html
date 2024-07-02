@@ -1,0 +1,119 @@
+{% extends 'RMS/main.html' %}
+
+{% block content %}
+<head>
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-photo/empty-dark-concrete-wall-room-studio-background-floor-perspective-with-blue-soft-light-displays_1258-108910.jpg?t=st=1706640218~exp=1706640818~hmac=233eecd1d002c02436301c4a535d089f1d85f7cd96b485fb29122268b5443fa3');
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0)
+        }
+
+        .span {
+            color: white;
+        }
+
+        .insideposter {
+            margin-bottom: 20px;
+            width: 830px;
+            margin-left: 20px;
+        }
+
+        .headofedit {
+            margin-top: -10px;
+        }
+
+        .cta-button2 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:rgb(226, 62, 62);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+.cta-button1 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:#3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+    </style>
+</head>
+
+<br>
+<br>
+<div class="container" style="background-color: rgba(255, 255, 255, 0);margin-left: 150px;">
+    <br>
+    <br>
+    <br>
+    <div class="insideposter" style="height: 80px; margin-left: 230px;background-color: rgba(255, 255, 255, 0.3);  ">
+        <h1 class="headofedit" style="color:white;"> Edit Section</h1>
+    </div>
+    <br>
+    <br>
+
+    <div class="card info mx-auto" style="background-color: rgba(255, 255, 255, 0.3); margin-top: 0px; ">
+        <div class="card">
+            <div class="card-body">
+                <div style="margin: 5px 10px 0 10px;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="card-title mb-0" style="color: white ; " >Other Sections </h4>
+                        <a class="btn " href="{% url 'addsection' %}" role="button"
+                            style="margin-top: 20px;background: rgba(255,255,255,0.7);">Add New</a>
+                    </div>
+                    <ul class="list-unstyled mb-0">
+
+                    
+                        <!-- Display all sections associated with the applicant -->
+                         {% for section in request.user.applicant.othersection_set.all %}
+                        <li style="list-style: none; margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; position: relative;">
+
+
+                        
+ 
+                         <a href="{% url 'Editsection' section.id %}" class="cta-button1" style=" height:45px;margin-left:680px; margin-top:0px; ">Edit</a>
+                                              
+                                   
+
+                            <h5 class="lh-base mb-0"
+                                style="padding-bottom: 15px; color: white;">{{ section.name }}</h5>
+                                
+                            <div style="color: #3498db;">Description:</div>
+                            <p style="color: white; font-size: 16px; padding-left: 20px;">	
+                               {{ section.describtion }}
+                            </p>
+
+
+
+
+                            
+                                 <div>
+                                              
+                                              <form method="post" action="{% url 'deletesection' section.id %}">
+                                              {% csrf_token %}
+                                              <input type="submit" class="cta-button2" style="width: 90px; background-color:  rgb(240, 20, 18); margin-left:650px;margin-top:-60px; " value="Delete">
+                                               </form>
+                                               </div>
+
+
+                              
+                           
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div><!-- end card-body -->
+        </div><!-- end card -->
+
+    </div>
+
+</div>
+
+{% endblock %}

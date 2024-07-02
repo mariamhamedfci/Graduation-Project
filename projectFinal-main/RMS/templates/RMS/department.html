@@ -1,0 +1,90 @@
+{% extends 'RMS/main.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <style>
+
+
+  
+    /* Basic styling for demonstration purposes */
+.company-card {
+ 
+  padding: 20px;
+  margin: 10px;
+  width: 800px;
+  height: 500px;
+  display: inline-block;
+  text-align: center;
+  margin-left: 350px;
+  margin-top: 50px;
+  color: #ffffff; /* تحديد لون النص بشكل دقيق */
+}
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .column {
+      width: 50%;
+      float: left;
+      box-sizing: border-box;
+      padding: 0 15px;
+      margin-left:50px;
+       margin-bottom: 10px;
+    
+    }
+
+    .row:after {
+      content: "";
+      display: inline;
+      clear: both;
+    }
+
+    .btn {
+      background-color:white /* Set the background color to white */
+      color: white; /* Set the text color to the desired color */
+    }
+
+    .btn:hover {
+      background-color: #fff; /* Set the background color to white on hover */
+      color: #3498db; /* Set the text color to the desired color on hover */
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="row"style="margin-left:20px; margin-top:100px" >
+  
+    <div class="company-card">
+      <img src="{% static 'images/depp.jpg' %}" class="img-fluid" alt="" style="height: 200px; width:500px">
+      <h2 class="text-primary font-size-20 " style="color: white;">CHOOSE YOUR DEPARTMENT</h2>
+
+         <br>
+     {% for department in department_list %}
+        {% cycle 'column'  '' as col silent %}
+        <div class="{{ col }}" >
+         <a  href="{% url 'companydepartment' department.id %}">
+          <button id="button1" onclick="changeColor() " class="btn btn-primary department-btn" style="margin-left:-100px;"> {{ department.name}} </button>
+        </a>
+
+         <br>
+         <br>
+
+       </div>
+     
+       {% endfor %}
+    </div>
+  
+</div>
+</body>
+</html>
+{% endblock %}
+
+

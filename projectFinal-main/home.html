@@ -1,0 +1,189 @@
+{% extends 'RMS/main.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company Jobs</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      background-image: url('https://img.freepik.com/free-photo/empty-dark-concrete-wall-room-studio-background-floor-perspective-with-blue-soft-light-displays_1258-108910.jpg?t=st=1706640218~exp=1706640818~hmac=233eecd1d002c02436301c4a535d089f1d85f7cd96b485fb29122268b5443fa3');
+      margin: 0;
+      padding: 0;
+    }
+    .btn {
+      color: #fff;
+      margin-right: -200px;  
+      font-size: 30px;
+    }
+    .post-card {
+      width: 635px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f5f5f5;
+    }
+    .company-info h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .company-info p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 80px;
+      margin-right: 20px;  
+    }
+    .post-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .post-content {
+      padding: 20px;
+      color: black;
+    }
+    .post-content h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .post-content p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .cta-button1, .cta-button2 {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+    .cta-button1 {
+      background-color: #0077B5;
+    }
+    .cta-button2 {
+      background-color: #e23e3e;
+    }
+    .company {
+      margin-right: 400px;
+    }
+    .follow-button {
+      font-size: 20px;
+      padding: 8px 20px;
+      border-radius: 5px;
+      color: #fff;
+      background-color: #0077B5;
+      margin-left: 385px;
+      margin-bottom: -15px;
+      border: none;
+      cursor: pointer;
+    }
+    .follow-button:hover {
+      background-color: #00567A;
+    }
+    .cta-button1:hover, .cta-button2:hover {
+      color: #fff;
+    }
+    .search-bar label {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <br><br><br>
+  <div class="container">
+    <div class="search-bar" style="margin-left: 850px; margin-top: 50px;">
+      <form class="form-inline my-2 my-lg-0" method="GET">
+        <div class="search-bar">
+          {{ companyfilter.form }} 
+          <button class="btn" type="submit">
+            <i class="fas fa-search" style="color: white; width:5px; height:5px;"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    {% for company in companies %}
+      <br>
+      <div class="post-card">
+        <div class="header" style="background-color: rgba(255, 255, 255, 0.2);">
+          <div class="company-info">
+            <a href="" style="display: flex; align-items: center;">
+              <img src="{{ company.companyphoto.url }}" alt="Profile Photo" style="width: 55px; height: 55px; border-radius: 50%; margin-right: 10px;">
+            </a>
+            {% if company.id %}
+              <button type="button" onclick="location.href='{% url 'companyPro' company.id %}'" class="btn" style="margin-left: 60px; margin-top: -70px;">{{ company.name }}</button>
+            {% endif %} 
+          </div>
+
+          {% if request.user != company.user %}
+          <form method="POST" action="{% url 'follow_unfollow_company' company.id %}">
+            {% csrf_token %}
+            {% if request.user in company.followers.all %}
+              <button type="submit" class="follow-button">+Following</button>
+            {% else %}
+              <button type="submit" class="follow-button">+Follow</button>
+            {% endif %}
+          </form>
+          {% endif %}
+        </div>
+
+        <div class="post-content">
+          {% for job in company.jobs.all %}
+            {% if job.is_active %}
+              <li style="list-style: none; margin-bottom: 20px; padding: 15px; border: 2px solid #3498db; border-radius: 12px; background-color: black; color: #ecf0f1;">
+                <div class="timeline-content">
+                  <p class="lead" style="margin-right: 200px;">
+                    <h2 style="color: #3498db;"> Job: <h2>{{ job.title }}</h2></h2>
+                    <br>
+                    <h2 style="color: #3498db;"> End Date: <h2>{{ job.end_date }}</h2></h2>
+                    <br>
+                    <h2 style="font-size: 20px; color: #3498db;"> Work Experience: </h2>{{ job.workexperience }}
+                    <br>
+                    <h2 style="font-size: 20px; color: #3498db;"> Education: </h2>{{ job.education }}
+                    <br>
+                    <h2 style="font-size: 20px; color: #3498db;"> Technical Skills: </h2>{{ job.technicalskills }}
+                    <br>
+                    <h2 style="font-size: 20px; color: #3498db;"> Achievements: </h2>{{ job.achievements }}
+                  </p>
+                  {% if request.user != company.user %}
+                    <a href="{% url 'apply_job' job.id %}" class="cta-button1">Apply</a>
+                  {% endif %}
+                  <a href="#" class="cta-button2" onclick="ignorePost(this)">Ignore</a>
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function showApplyAlert(url) {
+      Swal.fire({
+          title: 'Application Submitted',
+          text: 'You applied successfully!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = url;  // Redirect to the application URL
+          }
+      });
+    }
+  </script>
+</body>
+</html>
+
+{% endblock %}
